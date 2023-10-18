@@ -13,11 +13,11 @@ variable "vnetname" {
 variable "subnetname"{
   default = "myTFjdsubnet1"
 }
-variable "vnetaddress_space"
+variable "vnetaddressspace"
 {
  default = "10.10.0.0/16"
 }
-variable "subnetaddress_space
+variable "subnetaddressspace
 {
  default = "10.10.1.0/24"
 }
