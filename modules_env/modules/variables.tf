@@ -8,16 +8,24 @@ variable "rglocation"{
 }
 
 variable "vnetname" {
+  type = string
   default = "myTFvnet1"
 }
 variable "subnetname"{
   default = "myTFjdsubnet1"
 }
-variable "vnetaddress"{
- default = "10.10.0.0/16"
+variable "vnet_cidr_prefix"{
+ type = string
+ description = "vnet cidr block"
 }
-variable "subnetaddress" {
- default = "10.10.1.0/24"
+variable "subnet_cidr_prefix"{
+ type = string
+ description = "subnet cidr"
+}
+variable "prefix" {
+  type = string
+  description = "The prefix used for all resources in this "
+  
 }
 
 
