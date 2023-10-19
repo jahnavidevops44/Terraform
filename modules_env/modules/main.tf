@@ -1,4 +1,5 @@
 
+
 provider "azurerm" {
   
 features {}
@@ -8,20 +9,21 @@ client_secret = "7Sl8Q~nc__vVFPxPNw5sukvAFtLuVRAdMxg_1cL8"
 tenant_id = "cadc97f6-7230-4811-ab69-0f79018a75ec"
 }
 
-resource "azurerm_resource_group" "rg1" {
+resource "azurerm_resource_group" "rg" {
   name     = "jdrg"
   location = "East US"
 }
-resource "azurerm_virtual_network" "vnet1" {
-   name                = "jdvnet"
-  location            = azurerm_resource_group.rg1.location
-  resource_group_name = azurerm_resource_group.rg1.name
-  address_space      =  azurerm_virtual_network.vnet1.address_space
+resource "azurerm_virtual_network" "vnet" {
+   name                = "${var.prefix}-10"
+  #name                = var.vnetname
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  address_space      =  ["${var.vnet_cidr_prefix}"]
 
 }
-resource "azurerm_subnet" "subnet1" {
-  name                 = "jdsubnet"
-  resource_group_name  = azurerm_resource_group.rg1.name
-  virtual_network_name = azurerm_virtual_network.vnet1.name
-  address_space     = azurerm_virtual_network.subnet1.address_space 
+resource "azurerm_subnet" "subnet" {
+  name                 = var.subnetname
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["${var.subnet_cidr_prefix}"]
 }
